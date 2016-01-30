@@ -1,4 +1,4 @@
-/*
+/**************************************************************
  *	Project: To Do List
  *	Date Started: 1/29/2016
  *	GlobalGameJam 2016 - Los Angeles
@@ -8,11 +8,13 @@
  *	--------------------------------
  *	This is the Player Class that the user will be using to 
  *	play the game
-*/
+***************************************************************/
 
 #pragma once
 
 #include "GameFramework/Character.h"
+#include "PUsableObject.h"
+
 #include "PCharacter.generated.h"
 
 UCLASS()
@@ -36,17 +38,12 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
-	/****************************************
-				CAMERA ROTATION
-	*****************************************/
-	UFUNCTION(BlueprintCallable, Category = "Camera")
-	void CameraPitch(float _value);
-	
-	UFUNCTION(BlueprintCallable, Category = "Camera")
-	void CameraYaw(float _value);
-
-	//TODO(George): Implement this function.
+	//used for object interaction
 	UFUNCTION(BlueprintCallable, Category = "Action")
 	void PlayerAction();
+
+protected:
+	// returns an object for use with PlayerAction()
+	class APUsableObject* GetObjectInView() const;
 
 };
